@@ -6,7 +6,7 @@ import (
     "net/url"
     "net/http"
     "strings"
-    "./utils"
+    "github.com/yasuoza/msgcookie/utils"
 )
 
 var (
