@@ -2,16 +2,16 @@
 
 Conversation helper between rack server and Go through MessagePack encoding.
 
-# How to use
+## How to use
 
 See more [example](./example)
 
-# Learn more
+## Learn more
 
 * [Rack cookie](https://github.com/rack/rack/blob/master/lib/rack/session/cookie.rb)
 * [MessagePack](http://msgpack.org/)
 
-# LICENSE
+## LICENSE
 Copyright 2013 Yasuharu Ozaki
 
 Licensed under the Apache License, Version 2.0 (the "License");
