@@ -25,7 +25,7 @@ $ go run conversation_server.go
 
 ## Common configuration
 
-Defined in `config.json`
+Defined in [config.json](./config.json)
 
 ```js
 {
