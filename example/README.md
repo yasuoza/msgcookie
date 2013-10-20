@@ -27,7 +27,7 @@ $ go run conversation_server.go
 
 Defined in `config.json`
 
-```
+```js
 {
   "cookie_name":"rack.session",
   "cookie_secret":"special_secret"
