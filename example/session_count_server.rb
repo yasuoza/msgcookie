@@ -1,11 +1,13 @@
 require 'sinatra'
 require 'msgpack'
+require 'json'
 require_relative 'msgpack_cookie'
 
 configure do
-  use Rack::Session::Cookie, :key => 'rack.session',
+  config = JSON.load(File.open(File.join(__dir__, 'config.json')))
+  use Rack::Session::Cookie, :key => config['cookie_name'],
                              :coder => Rack::Session::MessagePack.new,
-                             :secret => 'special_secret'
+                             :secret => config['cookie_secret']
 end
 
 class Visits

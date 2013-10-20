@@ -1,0 +1,4 @@
+{
+  "cookie_name":"rack.session",
+  "cookie_secret":"special_secret"
+}
