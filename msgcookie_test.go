@@ -12,7 +12,7 @@ const (
     session_name = "rack.session"
 )
 
-func TestDecode(t *testing.T) {
+func TestDecodeWithSecret(t *testing.T) {
     val := "gqpzZXNzaW9uX2lk2gBAMTI3NmFmODk3YmU4NDgxMmEwNTUzZWI5NGQyMDc4%0ANDljYTEyZmMzNWUwMjAxZGFiY2I2MWFiZDExMGI0MjE1ZKZ2aXNpdHMC%0A--2689ddd14b0c839fabc9faa3ab83cd51e4f299f2"
 
     cookie := &http.Cookie{
@@ -36,6 +36,29 @@ func TestDecode(t *testing.T) {
     var s []uint8
     var ok bool
     if s, ok = cv["session_id"].([]uint8); !ok {
+        t.Fatal("session_id must be string")
+    }
+    if string(s) != expected_session_id {
+        t.Fatal("asertion failed")
+    }
+}
+
+func TestDecodeWithoutSecret(t *testing.T) {
+    val := "gqpzZXNzaW9uX2lk2gBAMTI3NmFmODk3YmU4NDgxMmEwNTUzZWI5NGQyMDc4%0ANDljYTEyZmMzNWUwMjAxZGFiY2I2MWFiZDExMGI0MjE1ZKZ2aXNpdHMC%0A"
+
+    cookie := &http.Cookie{
+        Name: session_name,
+        Value: val,
+    }
+
+    v, err := Decode(cookie, "")
+    if err != nil {
+        t.Fatal(err)
+    }
+
+    var s []uint8
+    var ok bool
+    if s, ok = v["session_id"].([]uint8); !ok {
         t.Fatal("session_id must be string")
     }
     if string(s) != expected_session_id {
